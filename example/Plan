@@ -1,0 +1,8 @@
+$redeem [coupon code]
+Redeem coupons
+$request [amount]
+Request USD (You need 69 validations to get accepted)
+[$requestinfo [@user]
+Get info about your request
+$validate [@user]
+Validate @user's request to get USD](Replace with lending system)
