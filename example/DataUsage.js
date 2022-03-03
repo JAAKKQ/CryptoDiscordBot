@@ -1,8 +1,8 @@
-var store = require('json-fs-store')('./data/member');
+var store = require('data-storage-system')('./data/member');
 
-store.load(`${target.id}`, "USD", function(err, object, Name){
+store.add(id, name, value, function(err, object){
   if(err) throw err;
-  });
-store.add(`${target.id}`, "USD", "1", function(err, object, Name){
+});
+store.load(id, name, function(err, object){
   if(err) throw err;
-  });
+});
