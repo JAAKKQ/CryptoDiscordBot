@@ -1,6 +1,6 @@
 const fs = require('fs');
 const fse = require('fs-extra');
-var store = require('data-storage-systemNoEnc')('.');
+var store = require('data-storage-system')('.');
 var BotVersion = "";
                               
 // To copy a folder or file  
