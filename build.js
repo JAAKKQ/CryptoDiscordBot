@@ -1,6 +1,6 @@
 const fs = require('fs');
 const fse = require('fs-extra');
-var store = require('data-storage-system')('.');
+var store = require('data-storage-systemNoEnc')('.');
 var BotVersion = "";
                               
 // To copy a folder or file  
@@ -54,6 +54,9 @@ store.load('version', 'BotVersion', function(err, object){
         copyFile('./package.json/', './build/package.json/');
         copyFile('./package-lock.json/', './build/package-lock.json/');
         copyFile('./Start.bat/', './build/Start.bat/');
+        copyFile('./UpdateToken.bat/', './build/UpdateToken.bat/');
+        copyFile('./NewToken.js/', './build/NewToken.js/');
+        copyFile('./data/member/', './build/data/member/');
         AchiveFile('./build/');
         if(err) throw err;
       });

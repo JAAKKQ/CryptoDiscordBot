@@ -3,7 +3,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fetch = require('node-fetch');
 const bal = require('./bal');
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
-var store = require('data-storage-system')('./data/member');
+var store = require('data-storage-system/WithEnc')('./data/member');
 
 module.exports = {
 	data: new SlashCommandBuilder()

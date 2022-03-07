@@ -8,7 +8,8 @@
     "@discordjs/rest": "^0.3.0",
     "archiver": "^5.3.0",
     "async": "^1.4.2",
-    "data-storage-system": "github:Petabytegames/data-storage-system",
+    "crypto": "^1.0.1",
+    "data-storage-system": "github:JAAKKQ/data-storage-system",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.6.0",
     "discord.js-snowflake": "^1.0.0-dev",
@@ -16,7 +17,9 @@
     "graceful-fs": "^4.1.2",
     "mkdirp": "^0.5.1",
     "node-fetch": "^2.6.7",
-    "node-uuid": "^1.4.4"
+    "node-rsa": "^1.1.1",
+    "node-uuid": "^1.4.4",
+    "simple-encryptor": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^8.8.0"
