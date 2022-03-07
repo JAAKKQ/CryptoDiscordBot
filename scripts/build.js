@@ -37,7 +37,7 @@ function AchiveFile( srcDir ) {
     archive.pipe(output);
     
     // append files from a sub-directory, putting its contents at the root of archive
-    archive.directory(srcDir, RootFolder + 'build');
+    archive.directory(srcDir, false);
     
     // append files from a sub-directory and naming it `new-subdir` within the archive
     
