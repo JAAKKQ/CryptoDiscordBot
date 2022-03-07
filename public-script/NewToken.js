@@ -2,7 +2,8 @@ const readline = require('readline');
 var store = require('data-storage-system')('.');
 var fs = require('fs');
 var path = require('path');
-const fse = require('fs-extra');
+const fse = require('fs-extra')
+var RootFolder = path.resolve("./");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -34,7 +35,7 @@ var AreFilesGood = true;
 
 store.load('config', 'token', function(err, object){
     Token = object
-    copyFile('./data/', `./data-backup-${Token}`);
+    copyFile(RootFolder + '/data/', RootFolder + `/data-backup-${Token}`);
 
     rl.question('Insert new token: ', function (NewToken) {
         var newkey = NewToken;
@@ -42,7 +43,7 @@ store.load('config', 'token', function(err, object){
             ClientID = NewID
             if(ClientID.length === 18){
               console.log('Client ID is valid!');
-              fs.readdir('./data/member/', function (err, files) {
+              fs.readdir(RootFolder + '/data/member/', function (err, files) {
                 if (err) {
                   console.error("Could not list the directory.", err);
                   process.exit(1);
@@ -50,7 +51,7 @@ store.load('config', 'token', function(err, object){
                 var encryptor = require('simple-encryptor')(Token);
                 var newencryptor = require('simple-encryptor')(newkey);
                 files.forEach(function (file, index) {
-                    fs.readFile(`./data/member/${file}`, 'utf8', function(err, code) {
+                    fs.readFile(RootFolder + `/data/member/${file}`, 'utf8', function(err, code) {
                         if (err) return cb("error loading file" + err);
                         try {
                           console.log('\x1b[32m%s\x1b[0m', `-------------------${file}-------------------`);
@@ -74,7 +75,7 @@ store.load('config', 'token', function(err, object){
                                 console.log('Finnished converting all files succesfully!');
                                 console.log('Wrting all files with converted data...');
                                 files.forEach(function (file, index) {
-                                  fs.readFile(`./data/member/${file}`, 'utf8', function(err, code) {
+                                  fs.readFile(RootFolder + `/data/member/${file}`, 'utf8', function(err, code) {
                                       if (err) return cb("error loading file" + err);
                                       try {
                                         console.log('\x1b[32m%s\x1b[0m', `-------------------Writing ${file}-------------------`);
@@ -89,7 +90,7 @@ store.load('config', 'token', function(err, object){
                                         console.log('Writing data to file!');
                                         try {
                                           json = JSON.stringify(jsonObj, null, 2);
-                                          fs.writeFile( `./data/member/${file}`, json, 'utf8', function(err) {
+                                          fs.writeFile(RootFolder + `/data/member/${file}`, json, 'utf8', function(err) {
                                               console.log(`Converted ${file} to new key.`);
                                               console.log('\x1b[32m%s\x1b[0m', `--------------------------------------------------------------------`);
                                               if(files.length === index + 1){
