@@ -41,7 +41,7 @@ module.exports = {
             const exampleEmbed = new MessageEmbed()
             .setColor('#F1C40F')
 			.setTitle(`Miner`)
-            .setDescription("Answer the question with `/mine [answer]`. If you don't define answer it will give you a new math question.")
+            .setDescription("Answer the question with `/mine [answer]`. If you want to get a new question type only `/mine`.")
 			.addFields(
                 { name: 'The Question', value: `${Question}` },
                 { name: 'Estimated Reward', value: `${Difficulty}` }
@@ -54,47 +54,37 @@ module.exports = {
                 const CorAnswer = object;
                 var Reward;
                 var QuesReward;
-                store.load(target.id, "Question-Diff", function(err, object){
-                    QuesReward = object;
-                    var EmbedColor = "#E74C3C";
+                var EmbedColor = "#E74C3C";
+                store.load(target.id, "Question-Diff", function(err, QuestionDiff){
                     if (+[RawAnswer] === +[CorAnswer]){
-                        Reward = [QuesReward];
                         EmbedColor = "#F1C40F";
                     } else {
-                        Reward = 0;
+                        QuestionDiff = 0;
                         EmbedColor = "#E74C3C";
                     }
-                    MathCreator.new(function(CalQuestion, CalDiff){
-                        Difficulty = CalDiff;
-                        Question = CalQuestion;
-                        const CorrectAnswer = eval(Question);
-                        store.add(target.id, "Question-Answer", CorrectAnswer, function(err, object){
-                            if(err) throw err;
-                            store.add(target.id, "Question-Diff", Difficulty, function(err, object){
-                                if(err) throw err;
-                            });
-                        });
-                    });
                     const exampleEmbed = new MessageEmbed()
                     .setColor(EmbedColor)
                     .setTitle(`Transaction`)
+                    .setDescription("If you want to get a new question type only `/mine`.")
                     .addFields(
                         { name: 'Client', value: `${target.tag}` },
                         { name: 'Client Answer', value: `${RawAnswer}`},
                         { name: 'Correct Answer', value: `${CorAnswer}` },
-                        { name: 'Reward', value: `$${Reward}` },
-                        { name: 'New Question', value: `${Question}`, inline: true},
-                        { name: 'Estimated Reward', value: `${Difficulty}`, inline: true}
+                        { name: 'Reward', value: `$${QuestionDiff}` },
                         )
                         .setTimestamp()
                         .setFooter({ text: 'Type: Miner'});
                         interaction.editReply({ embeds: [exampleEmbed]});
                     store.load(target.id, "USD", function(err, object){
-                        var NewBal = +[object] + +[Reward];
+                        var NewBal = +[object] + +[QuestionDiff];
                         if (NewBal <= 0){
                             NewBal = 0
                         }
                         store.add(target.id, "USD", NewBal, function(err, object){
+                            QuestionDiff = 0;
+                            store.add(target.id, "Question-Diff", QuestionDiff, function(err, object){
+                                if(err) throw err;
+                                });
                             if(err) throw err;
                           });
                         if(err) throw err;
