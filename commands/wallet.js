@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
-var store = require('data-storage-system')('./data/member');
+var store = require('data-storage-system/WithEnc')('./data/member');
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
 
 

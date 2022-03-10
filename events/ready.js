@@ -2,10 +2,10 @@ const Discord = require('discord.js')
 const fetch = require('node-fetch')
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
 
-var BTCprice = "1";
-var ETHprice = "1";
-var DOGEprice = "1";
-var XLMprice = "1";
+var BTCprice = "null";
+var ETHprice = "null";
+var DOGEprice = "null";
+var XLMprice = "null";
 
 async function getJson(url, path) {
     let response = await fetch(url);
@@ -33,23 +33,24 @@ module.exports = {
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 		Prices();
+		client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
 		setInterval(() => {
 			Prices();
 		  }, 60000);
 		setInterval(() => {
 			setTimeout(function(){ 
 				client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' }); 
-			}, 3000);
+			}, 5000);
 			setTimeout(function(){ 
 				client.user.setActivity(`ETH = $${ETHprice}`, { type: 'WATCHING' }); 
-			}, 6000);
+			}, 10000);
 			setTimeout(function(){ 
 				client.user.setActivity(`DOGE = $${DOGEprice}`, { type: 'WATCHING' }); 
-			}, 9000);
+			}, 15000);
 			setTimeout(function(){ 
 				client.user.setActivity(`XLM = $${XLMprice}`, { type: 'WATCHING' }); 
-			}, 12000);
-		  }, 14000);
+			}, 20000);
+		  }, 25000);
 		
 	},
 };
