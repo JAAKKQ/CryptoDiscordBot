@@ -1,4 +1,27 @@
-const fs = require('fs');
+const readline = require('readline');
+var TokenWizard = require('./public-script/NewToken.js')('.');
+
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+  });
+
+rl.question('Set new token? y/n: ', function (Result) {
+	if(Result === 'y'){
+		TokenWizard.new(function(){
+			console.log('Completed token wizard!');
+			StartBot();
+		  });
+	}
+	if(Result === 'n'){
+		StartBot();
+	}
+  });
+
+//Base bot functionality
+function StartBot(){
+	console.log('Starting bot!')
+	const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
@@ -44,3 +67,5 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login(token);
+	
+}
