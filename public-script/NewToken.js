@@ -29,7 +29,7 @@ function IsGoodString(str) {
   }
 }
 
-if (!fs.existsSync(RootFolder + '/data/member/')){
+if (!fs.existsSync(RootFolder + '/data/member/')) {
   fs.mkdirSync(RootFolder + '/data/member/', { recursive: true });
   console.log(`Made new data directory!`);
 }
@@ -46,7 +46,7 @@ module.exports = function (dir) {
       store.load('config', 'token', function (err, object) {
         Token = object
         rl.question('Insert new token: ', function (NewToken) {
-          readline.moveCursor(process.stdout, 0,-1)
+          readline.moveCursor(process.stdout, 0, -1)
           console.log('\033[1A' + 'New token set to cache!');
           var newkey = NewToken;
           rl.question('Insert new client ID: ', function (NewID) {
