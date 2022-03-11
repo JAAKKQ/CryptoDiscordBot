@@ -1,6 +1,5 @@
 const readline = require('readline');
 var TokenWizard = require('./public-script/NewToken.js')('.');
-var DeployWizard = require('./public-script/deploy-commands.js')('.');
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -21,6 +20,7 @@ rl.question('Set new token? y/n: ', function (Result) {
 
 //Base bot functionality
 function StartBot() {
+	var DeployWizard = require('./public-script/deploy-commands.js')('.');
 	DeployWizard.deploy(function () {
 		console.log('Successfully registered application commands!');
 		console.log('Starting bot...');
