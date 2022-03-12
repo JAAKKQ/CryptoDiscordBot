@@ -1,5 +1,5 @@
-var path = require('path');
-var RootFolder = path.resolve("./");
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
 const fs = require('fs');
 
 console.log('Successfully registered application commands!');

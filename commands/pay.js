@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-var store = require('data-storage-system/WithEnc')('./data/member');
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
+var store = require('data-storage-system/WithEnc')(RootFolder + '/data/member');
 
 module.exports = {
 	data: new SlashCommandBuilder()
