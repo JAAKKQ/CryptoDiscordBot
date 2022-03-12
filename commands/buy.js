@@ -1,9 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fetch = require('node-fetch');
-const bal = require('./bal');
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
-var store = require('data-storage-system/WithEnc')('./data/member');
+var store = require('data-storage-system/WithEnc')(RootFolder + '/data/member');
 
 module.exports = {
 	data: new SlashCommandBuilder()
