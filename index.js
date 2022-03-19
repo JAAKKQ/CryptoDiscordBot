@@ -1,7 +1,7 @@
 const readline = require('readline');
 var TokenWizard = require('./public-script/NewToken.js')('.');
 var path = require('path');
-var RootFolder = path.resolve("./");
+const RootFolder = dirname(require.main.filename);
 const fs = require('fs');
 var index = 10;
 
