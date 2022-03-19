@@ -3,28 +3,51 @@ var TokenWizard = require('./public-script/NewToken.js')('.');
 var path = require('path');
 var RootFolder = path.resolve("./");
 const fs = require('fs');
+var index = 10;
 
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout
 });
 
+//Create a timeout for the set new token question.
+TokenTimeout();
+console.log('Skipping token wizard in ' + [index] + ' seconds. Be FAST to win the battle against the clock!');
+
+//Create set timeout question.
 rl.question('Set new token? y/n: ', function (Result) {
 	if (Result === 'y') {
+		index = 0;
 		TokenWizard.new(function () {
 			console.log('Completed token wizard!');
-			StartBot();
+			BotInit();
 		});
 	}
 	if (Result === 'n') {
-		StartBot();
+		index = 0;
+		BotInit();
 	}
 });
 
+//Token timeout function
+function TokenTimeout(){
+	if(index === 0){
+		rl.write("e\n");
+		console.log('Skipped setting new token question...')
+		BotInit();
+	}else{
+		setTimeout(function() {
+			index = +[index] - 1;
+			TokenTimeout();
+		}, 1000);
+	}
+}
+
+
 //Base bot functionality
-function StartBot() {
+function BotInit() {
 	console.log('Successfully registered application commands!');
-	console.log('Starting bot...');
+	console.log('Bot Initializing...');
 	const { Client, Collection, Intents } = require('discord.js');
 	const { token } = require(RootFolder + '/config.json');
 
