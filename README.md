@@ -28,10 +28,11 @@ To answer the given question just define the `[answer]` value
 3.  Run `npm install`
 4.  Go to the [Discord Developer Portal](https://discord.com/developers/applications) and grab your bot token
 5.  Run the index.html: `node index.js` 
-6.  The wizard will then ask you if you want to set a new bot token
+6.  The token wizard will then ask you if you want to set a new bot token
 7.  Type `y` and hit <kbd>enter</kbd>
 8.  Paste your token and hit <kbd>enter</kbd>
 9.  Then paste your bot's id and hit <kbd>enter</kbd>
 10.  The bot should start if there were no errors
 
 You should never write your bot's token or id directly to the `config.json` file, always use the wizard to change them!
+To start the token wizard just run `node index.js` and when asked "Set new token?" type `y` and hit <kbd>enter</kbd>.
