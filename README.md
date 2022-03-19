@@ -25,12 +25,13 @@ To answer the given question just define the `[answer]` value
 
 1.  Download the latest [release](https://github.com/JAAKKQ/DiscordBot/releases)
 2.  Extract it with WinRAR, 7zip, WinZip...
-3.  Go to the [Discord Developer Portal](https://discord.com/developers/applications) and grab your bot token
-4.  Run the index.html: `node index.js` 
-5.  The wizard will then ask you if you want to set a new bot token
-6.  Type `y` and hit <kbd>enter</kbd>
-7.  Paste your token and hit <kbd>enter</kbd>
-8.  Then paste your bot's id and hit <kbd>enter</kbd>
-9.  The bot should start if there were no errors
+3.  Run `npm install`
+4.  Go to the [Discord Developer Portal](https://discord.com/developers/applications) and grab your bot token
+5.  Run the index.html: `node index.js` 
+6.  The wizard will then ask you if you want to set a new bot token
+7.  Type `y` and hit <kbd>enter</kbd>
+8.  Paste your token and hit <kbd>enter</kbd>
+9.  Then paste your bot's id and hit <kbd>enter</kbd>
+10.  The bot should start if there were no errors
 
 You should never write your bot's token or id directly to the `config.json` file, always use the wizard to change them!
