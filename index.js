@@ -1,5 +1,4 @@
 const readline = require('readline');
-var path = require('path');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 var TokenWizard = require(RootFolder + '/public-script/NewToken.js')('.');
