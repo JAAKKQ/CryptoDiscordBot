@@ -1,9 +1,9 @@
 const readline = require('readline');
 var store = require('data-storage-system')('.');
 var fs = require('fs');
-var path = require('path');
 const fse = require('fs-extra')
-var RootFolder = path.resolve("./");
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
 
 const rl = readline.createInterface({
   input: process.stdin,
