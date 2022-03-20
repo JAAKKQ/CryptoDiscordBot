@@ -1,5 +1,5 @@
 ## Wut is this?
-Source of a cool bot that I managed to made. 
+Source of a cool bot that I managed to made with [discord.js](https://github.com/discordjs/discord.js). 
 This bot's status cycles trough the price of Bitcoin, Ethereum, Dogecoin and Stellar.
 
 ## Commands
