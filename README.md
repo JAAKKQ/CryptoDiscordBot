@@ -4,22 +4,36 @@ This bot's status cycles trough the price of Bitcoin, Ethereum, Dogecoin and Ste
 
 ## Commands
 This bot uses application commands!
+Users can check what is the current price of defined coin with commnad:
+```
+/price coin:
+```
+Users can check there USD balance with command:
+```
+/bal
+```
 Users can Buy and Sell over 1000 coins with commands:
 ```
-/buy [amount] [coin]
-/sell [amount] [coin]
+/buy amount: coin:
+```
+```
+/sell amount: coin:
 ```
 
 Users can also send USD to other users with command:
 ```
-/pay [amount] [user]
+/pay amount: user:
 ```
 
 Users can even "mine" USD by answering simple math questions with command:
 ```
 /mine
 ```
+
 To answer the given question just define the `[answer]` value
+```
+/mine answer:
+```
 
 ## Installation
 
