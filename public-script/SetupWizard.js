@@ -49,6 +49,7 @@ module.exports = function (dir) {
                     readline.moveCursor(process.stdout, 0, -1);
                     console.log('\033[1A' + 'Token set!');
                     rl.question('Insert Bot Clinet ID: ', function (ClientID) {
+                        rl.close();
                         store.add('config', 'clientId', ClientID, function (err) {
                             if (err) throw err;
                             readline.moveCursor(process.stdout, 0, -1);
