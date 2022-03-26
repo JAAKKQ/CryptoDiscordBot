@@ -45,8 +45,8 @@ module.exports = function (dir) {
       store.load('config', 'token', function (err, object) {
         Token = object
         rl.question('Insert new token: ', function (NewToken) {
-          readline.moveCursor(process.stdout, 0, -1)
-          console.log('\033[1A' + 'Insert new token: *********************************');
+          readline.moveCursor(process.stdout, 0, -1);
+          console.log('\033[1A' + 'Insert new token: ******************************************************************');
           var newkey = NewToken;
           rl.question('Insert new client ID: ', function (NewID) {
             ClientID = NewID
