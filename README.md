@@ -37,7 +37,7 @@ To answer the given question just define the `[answer]` value
 
 ## Installation
 
-1.  Download the latest [release](https://github.com/JAAKKQ/DiscordBot/releases)
+1.  Download the latest [version](https://github.com/JAAKKQ/CryptoDiscordBot/archive/refs/heads/main.zip)
 2.  Extract it with WinRAR, 7zip, WinZip...
 3.  Run `npm install`
 4.  Go to the [Discord Developer Portal](https://discord.com/developers/applications) and grab your bot token
