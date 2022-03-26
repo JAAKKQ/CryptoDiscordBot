@@ -46,11 +46,11 @@ module.exports = function (dir) {
             rl.question('Insert old token: ', function (OldToken) {
                 readline.moveCursor(process.stdout, 0, -1);
                 Token = OldToken
-                console.log('\033[1A' + 'Old token set to cache!');
+                console.log('\033[1A' + 'Insert old token: ******************************************************************');
                 rl.question('Insert new token: ', function (NewToken) {
                     readline.moveCursor(process.stdout, 0, -1);
                     NewToken = NewToken;
-                    console.log('\033[1A' + 'New token set to cache!');
+                    console.log('\033[1A' + 'Insert new token: ******************************************************************');
                     rl.question('Insert new client ID: ', function (ClientID) {
                         ClientID = ClientID;
                         //asd

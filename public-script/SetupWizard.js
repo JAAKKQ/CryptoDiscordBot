@@ -43,17 +43,17 @@ module.exports = function (dir) {
                 input: process.stdin,
                 output: process.stdout
             });
+            console.log('')
             rl.question('Insert Bot Token: ', function (Token) {
+                console.log('\033[1A' + 'Insert new token: ******************************************************************');
                 store.add('config', 'token', Token, function (err) {
                     if (err) throw err;
-                    readline.moveCursor(process.stdout, 0, -1);
-                    console.log('\033[1A' + 'Token set!');
                     rl.question('Insert Bot Clinet ID: ', function (ClientID) {
                         rl.close();
                         store.add('config', 'clientId', ClientID, function (err) {
                             if (err) throw err;
-                            readline.moveCursor(process.stdout, 0, -1);
-                            console.log('\033[1A' + 'ClientID set!');
+                            console.log('Completed token wizard!');
+                            console.log('');
                             cb();
                         });
                     });

@@ -23,7 +23,6 @@ if (fs.existsSync(RootFolder + '/config.json')) {
 		if (Result === 'y') {
 			index = 0;
 			TokenWizard.new(function () {
-				console.log('Completed token wizard!');
 				BotInit();
 			});
 		}
@@ -37,14 +36,12 @@ if (fs.existsSync(RootFolder + '/config.json')) {
 		rl.close();
 		if (Result === 's') {
 			SetupWizard.start(function () {
-				console.log('Completed setup wizard!');
 				BotInit();
 			});
 		}
 		if (Result === 'r') {
 			console.log('You are now in the data recovery wizard.');
 			DataRecoveryWizard.start(function () {
-				console.log('Completed token wizard!');
 				BotInit();
 			});
 		}
