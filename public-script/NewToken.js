@@ -46,7 +46,7 @@ module.exports = function (dir) {
         Token = object
         rl.question('Insert new token: ', function (NewToken) {
           readline.moveCursor(process.stdout, 0, -1)
-          console.log('\033[1A' + 'New token set to cache!');
+          console.log('\033[1A' + 'Insert new token: *********************************');
           var newkey = NewToken;
           rl.question('Insert new client ID: ', function (NewID) {
             ClientID = NewID
@@ -178,3 +178,10 @@ module.exports = function (dir) {
     }
   }
 };
+//I never realized the lengths I'd have to go
+//All the darkest corners of a sense
+//I didn't know
+//Just for one moment
+//hearing someone call
+//Looked beyond the day in hand
+//There's nothing there at all

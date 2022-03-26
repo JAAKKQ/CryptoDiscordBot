@@ -18,3 +18,10 @@ client.once('ready', c => {
         console.log('\x1b[34m%s\x1b[0m', `SERVING ${NumMembers} MEMBERS`)
     })
 });
+//I never realized the lengths I'd have to go
+//All the darkest corners of a sense
+//I didn't know
+//Just for one moment
+//hearing someone call
+//Looked beyond the day in hand
+//There's nothing there at all

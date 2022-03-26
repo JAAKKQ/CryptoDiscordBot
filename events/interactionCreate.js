@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'interactionCreate',
 	execute(interaction) {
-		console.log(`${interaction.user.tag} an interaction.`);
+		console.log(`${interaction.user.tag} triggered an interaction! Wohooo`);
 	},
 };
