@@ -5,11 +5,6 @@ const fse = require('fs-extra')
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 // To copy a folder or file  
 function copyFile(srcDir, destDir) {
   console.log(`Copying files from ${srcDir} to ${destDir}`);
@@ -43,11 +38,15 @@ module.exports = function (dir) {
     dir: dir,
 
     new: function (cb) {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });      
       store.load('config', 'token', function (err, object) {
         Token = object
         rl.question('Insert new token: ', function (NewToken) {
           readline.moveCursor(process.stdout, 0, -1)
-          console.log('\033[1A' + 'New token set to cache!');
+          console.log('\033[1A' + 'Insert new token: *********************************');
           var newkey = NewToken;
           rl.question('Insert new client ID: ', function (NewID) {
             ClientID = NewID
@@ -114,6 +113,7 @@ module.exports = function (dir) {
                                             store.add('config', 'clientId', ClientID, function (err, object) {
                                               if (err) throw err;
                                               console.log('\x1b[34m%s\x1b[0m', 'Updated client ID succesfully!');
+                                              rl.close();
                                               cb();
                                             });
                                           });
@@ -160,6 +160,7 @@ module.exports = function (dir) {
                       console.log('\x1b[34m%s\x1b[0m', 'Updated client ID succesfully!');
                       var DeployWizard = require(RootFolder + '/public-script/deploy-commands.js')('.');
                       DeployWizard.deploy(function () {
+                        rl.close();
                         cb();
                       });
                     });
@@ -167,6 +168,7 @@ module.exports = function (dir) {
                 }
               });
             } else {
+              rl.close();
               console.log('\x1b[31m%s\x1b[0m', 'Client ID is not valid!');
             }
           });
@@ -176,3 +178,10 @@ module.exports = function (dir) {
     }
   }
 };
+//I never realized the lengths I'd have to go
+//All the darkest corners of a sense
+//I didn't know
+//Just for one moment
+//hearing someone call
+//Looked beyond the day in hand
+//There's nothing there at all

@@ -19,6 +19,7 @@ if (fs.existsSync(RootFolder + '/config.json')) {
 
 	//Create set timeout question.
 	rl.question('Set new token? y/n: ', function (Result) {
+		rl.close();
 		if (Result === 'y') {
 			index = 0;
 			TokenWizard.new(function () {
@@ -33,6 +34,7 @@ if (fs.existsSync(RootFolder + '/config.json')) {
 	});
 } else {
 	rl.question('Config file not found. Would you like to setup a new config or recover old data? s/r: ', function (Result) {
+		rl.close();
 		if (Result === 's') {
 			SetupWizard.start(function () {
 				console.log('Completed setup wizard!');
@@ -115,3 +117,10 @@ function BotInit() {
 
 	client.login(token);
 }
+//I never realized the lengths I'd have to go
+//All the darkest corners of a sense
+//I didn't know
+//Just for one moment
+//hearing someone call
+//Looked beyond the day in hand
+//There's nothing there at all

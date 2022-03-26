@@ -5,11 +5,6 @@ const fse = require('fs-extra')
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
 // To copy a folder or file  
 function copyFile(srcDir, destDir) {
     console.log(`Copying files from ${srcDir} to ${destDir}`);
@@ -44,12 +39,17 @@ module.exports = function (dir) {
         dir: dir,
 
         start: function (cb) {
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
+            });
             rl.question('Insert Bot Token: ', function (Token) {
                 store.add('config', 'token', Token, function (err) {
                     if (err) throw err;
                     readline.moveCursor(process.stdout, 0, -1);
                     console.log('\033[1A' + 'Token set!');
                     rl.question('Insert Bot Clinet ID: ', function (ClientID) {
+                        rl.close();
                         store.add('config', 'clientId', ClientID, function (err) {
                             if (err) throw err;
                             readline.moveCursor(process.stdout, 0, -1);
@@ -62,3 +62,10 @@ module.exports = function (dir) {
         }
     }
 };
+//I never realized the lengths I'd have to go
+//All the darkest corners of a sense
+//I didn't know
+//Just for one moment
+//hearing someone call
+//Looked beyond the day in hand
+//There's nothing there at all
