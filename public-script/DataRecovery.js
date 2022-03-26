@@ -5,11 +5,6 @@ const fse = require('fs-extra')
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
 // To copy a folder or file  
 function copyFile(srcDir, destDir) {
     console.log(`Copying files from ${srcDir} to ${destDir}`);
@@ -44,6 +39,10 @@ module.exports = function (dir) {
         dir: dir,
 
         start: function (cb) {
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
+            });
             rl.question('Insert old token: ', function (OldToken) {
                 readline.moveCursor(process.stdout, 0, -1);
                 Token = OldToken
