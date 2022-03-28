@@ -5,6 +5,13 @@ const isEmptyObject = (obj) => Object.keys(obj).length === 0;
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 
+function InvalidCoin(interaction, coin){
+	const exampleEmbed = new MessageEmbed()
+		.setColor('#E74C3C')
+		.setTitle(`${coin} is not valid!`);
+	interaction.editReply({ embeds: [exampleEmbed] });
+}
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('p')
@@ -20,17 +27,13 @@ module.exports = {
 		const ccupper = (cc.toUpperCase());
 		const response = await fetch(`https://api.coingecko.com/api/v3/coins/${cc}`);
 		const data = await response.json();
+		await interaction.deferReply();
 		if (isEmptyObject(data)) {
-			await interaction.deferReply();
-			const exampleEmbed = new MessageEmbed()
-				.setColor('#E74C3C')
-				.setTitle(`${ccupper} is not valid!`);
-			interaction.editReply({ embeds: [exampleEmbed] });
+			InvalidCoin(interaction, ccupper);
 		}
-		if (!isEmptyObject(data)) {
+		if (!isEmptyObject(data) && !JSON.stringify(data).includes('error')) {
 			const usdprice = data.market_data.current_price.usd;
 			const pricechange = data.market_data.price_change_24h;
-			await interaction.deferReply();
 			const exampleEmbed = new MessageEmbed()
 				.setColor('#F1C40F')
 				.setTitle(`${ccupper} = $${usdprice}`)
@@ -38,6 +41,8 @@ module.exports = {
 				.setImage(`https://api.chart-img.com/v1/tradingview/advanced-chart?width=500&symbol=COINBASE:${data.symbol}USD&height=300&key=${ChartKey}`)
 				.setTimestamp();
 			interaction.editReply({ embeds: [exampleEmbed] });
+		}else{
+			InvalidCoin(interaction, ccupper);
 		}
 	},
 };
