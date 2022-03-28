@@ -48,13 +48,18 @@ module.exports = function (dir) {
                 console.log('\033[1A' + 'Insert new token: ******************************************************************');
                 store.add('config', 'token', Token, function (err) {
                     if (err) throw err;
-                    rl.question('Insert Bot Clinet ID: ', function (ClientID) {
-                        rl.close();
+                    rl.question('Insert Bot Client ID: ', function (ClientID) {
                         store.add('config', 'clientId', ClientID, function (err) {
                             if (err) throw err;
-                            console.log('Completed token wizard!');
-                            console.log('');
-                            cb();
+                            rl.question('Insert chart API token from chart-img.com (optional): ', function (ChartKey) {
+                                store.add('config', 'ChartKey', ChartKey, function (err, object) {
+                                    if (err) throw err;
+                                    console.log('\033[1A' + 'Insert chart API token from chart-img.com (optional): ******************************************************************');
+                                    console.log('Completed token wizard!');
+                                    cb();
+                                    rl.close();
+                                });
+                            });
                         });
                     });
                 });
