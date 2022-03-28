@@ -112,9 +112,15 @@ module.exports = function (dir) {
                                             console.log('Updating client ID...');
                                             store.add('config', 'clientId', ClientID, function (err, object) {
                                               if (err) throw err;
-                                              console.log('\x1b[34m%s\x1b[0m', 'Updated client ID succesfully!');
-                                              rl.close();
-                                              cb();
+                                              rl.question('Insert chart API token from chart-img.com (optional): ', function (ChartKey) {
+                                                store.add('config', 'ChartKey', ChartKey, function(err, object){
+                                                  if(err) throw err;
+                                                  console.log('\033[1A' + 'Insert chart API token from chart-img.com (optional): ******************************************************************');
+                                                  console.log('\x1b[34m%s\x1b[0m', 'Updated chart API key succesfully!');
+                                                  rl.close();
+                                                  cb();
+                                                });
+                                              });
                                             });
                                           });
                                         }

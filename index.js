@@ -4,6 +4,7 @@ const RootFolder = dirname(require.main.filename);
 var TokenWizard = require(RootFolder + '/public-script/NewToken.js')('.');
 var DataRecoveryWizard = require(RootFolder + '/public-script/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/public-script/SetupWizard.js')('.');
+var CommandWizard = require(RootFolder + '/public-script/deploy-commands.js')('.');
 const fs = require('fs');
 var index = 10;
 
@@ -66,53 +67,54 @@ function TokenTimeout() {
 
 //Base bot functionality
 function BotInit() {
-	console.log('Successfully registered application commands!');
-	console.log('Starting bot...');
-	const { Client, Collection, Intents } = require('discord.js');
-	const { token } = require(RootFolder + '/config.json');
+	CommandWizard.deploy(function () {
+		console.log('Starting bot...');
+		const { Client, Collection, Intents } = require('discord.js');
+		const { token } = require(RootFolder + '/config.json');
 
-	const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+		const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-	const eventFiles = fs.readdirSync(RootFolder + '/events').filter(file => file.endsWith('.js'));
+		const eventFiles = fs.readdirSync(RootFolder + '/events').filter(file => file.endsWith('.js'));
 
-	for (const file of eventFiles) {
-		const event = require(RootFolder + `/events/${file}`);
-		if (event.once) {
-			client.once(event.name, (...args) => event.execute(...args));
+		for (const file of eventFiles) {
+			const event = require(RootFolder + `/events/${file}`);
+			if (event.once) {
+				client.once(event.name, (...args) => event.execute(...args));
+			}
+			else {
+				client.on(event.name, (...args) => event.execute(...args));
+			}
 		}
-		else {
-			client.on(event.name, (...args) => event.execute(...args));
+
+		client.commands = new Collection();
+
+		const commandFiles = fs.readdirSync(RootFolder + '/commands').filter(file => file.endsWith('.js'));
+
+		for (const file of commandFiles) {
+			const command = require(RootFolder + `/commands/${file}`);
+			// Set a new item in the Collection
+			// With the key as the command name and the value as the exported module
+			client.commands.set(command.data.name, command);
 		}
-	}
 
-	client.commands = new Collection();
+		client.on('interactionCreate', async interaction => {
+			if (!interaction.isCommand()) return;
 
-	const commandFiles = fs.readdirSync(RootFolder + '/commands').filter(file => file.endsWith('.js'));
+			const command = client.commands.get(interaction.commandName);
 
-	for (const file of commandFiles) {
-		const command = require(RootFolder + `/commands/${file}`);
-		// Set a new item in the Collection
-		// With the key as the command name and the value as the exported module
-		client.commands.set(command.data.name, command);
-	}
+			if (!command) return;
 
-	client.on('interactionCreate', async interaction => {
-		if (!interaction.isCommand()) return;
+			try {
+				await command.execute(interaction);
+			}
+			catch (error) {
+				console.error(error);
+				await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+			}
+		});
 
-		const command = client.commands.get(interaction.commandName);
-
-		if (!command) return;
-
-		try {
-			await command.execute(interaction);
-		}
-		catch (error) {
-			console.error(error);
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
+		client.login(token);
 	});
-
-	client.login(token);
 }
 //I never realized the lengths I'd have to go
 //All the darkest corners of a sense

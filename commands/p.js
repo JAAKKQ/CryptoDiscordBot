@@ -7,7 +7,7 @@ const RootFolder = dirname(require.main.filename);
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('price')
+		.setName('p')
 		.setDescription('Replies with the price of defined coin!')
 		.addStringOption(option =>
 			option.setName('coin')
