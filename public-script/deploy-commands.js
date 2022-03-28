@@ -1,16 +1,16 @@
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-var path = require('path');
-var RootFolder = path.resolve("./");
-const { clientId, guildId, token } = require(RootFolder + '/config.json');
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
 
 module.exports = function (dir) {
 	return {
 		dir: dir,
 
 		deploy: function (cb) {
-			console.log('Registering application commands...')
+			console.log('Registering application commands...');
+			const { clientId, guildId, token } = require(RootFolder + '/config.json');
 			const commands = [];
 			const commandFiles = fs.readdirSync(RootFolder + '/commands').filter(file => file.endsWith('.js'));
 
