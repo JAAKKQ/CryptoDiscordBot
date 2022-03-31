@@ -39,10 +39,10 @@ To answer the given question just define the `[answer]` value
 
 1.  Download the latest [version](https://github.com/JAAKKQ/CryptoDiscordBot/archive/refs/heads/main.zip)
 2.  Extract it with WinRAR, 7zip, WinZip...
-3.  Run `npm install`
+3.  Run `npm install` through CMD or double click on the `InstallModules.bat` file
 4.  Go to the [Discord Developer Portal](https://discord.com/developers/applications) and grab your bot token
-5.  Run the index.js: `node index.js` 
-6.  The setup wizard will then ask: "Config file not found. Would you like to setup a new config or recover old data?" 
+5.  Run the index.js: `node index.js` through CMD or double click on the `Start.bat` file
+6.  The setup wizard will then ask: "Config file not found. Would you like to setup a new config or recover old data? s/r" 
 7.  Type `s` and hit <kbd>enter</kbd>
 8.  Paste your token and hit <kbd>enter</kbd>
 9.  Then paste your bot's id and hit <kbd>enter</kbd>
