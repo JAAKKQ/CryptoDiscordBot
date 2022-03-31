@@ -92,13 +92,12 @@ store.load('version', 'BotVersion', function (err, object) {
     store.add('version', 'BotVersion', BotVersion, function (err, object) {
       copyFile(RootFolder + '/commands/', './build/commands/');
       copyFile(RootFolder + '/events/', './build/events/');
-      copyFile(RootFolder + '/node_modules/', './build/node_modules/');
       copyFile(RootFolder + '/index.js/', './build/index.js/');
+      copyFile(RootFolder + '/skynet.js/', './build/skynet.js/');
       copyFile(RootFolder + '/package.json/', './build/package.json/');
       copyFile(RootFolder + '/package-lock.json/', './build/package-lock.json/');
       copyFile(RootFolder + '/Start.bat/', './build/Start.bat/');
-      copyFile(RootFolder + '/UpdateToken.bat/', './build/UpdateToken.bat/');
-      copyFile(RootFolder + '/public-script/', './build/public-script/');
+      copyFile(RootFolder + '/scripts/', './build/scripts/');
       AchiveFile(RootFolder + '/build/');
       if (err) throw err;
     });
