@@ -1,10 +1,10 @@
 const readline = require('readline');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
-var TokenWizard = require(RootFolder + '/public-script/NewToken.js')('.');
-var DataRecoveryWizard = require(RootFolder + '/public-script/DataRecovery.js')('.');
-var SetupWizard = require(RootFolder + '/public-script/SetupWizard.js')('.');
-var CommandWizard = require(RootFolder + '/public-script/deploy-commands.js')('.');
+var TokenWizard = require(RootFolder + '/scripts/NewToken.js')('.');
+var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
+var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
+var CommandWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
 const fs = require('fs');
 var index = 10;
 

@@ -162,7 +162,7 @@ module.exports = function (dir) {
                                         store.add('config', 'clientId', ClientID, function (err, object) {
                                             if (err) throw err;
                                             console.log('\x1b[34m%s\x1b[0m', 'Updated client ID succesfully!');
-                                            var DeployWizard = require(RootFolder + '/public-script/deploy-commands.js')('.');
+                                            var DeployWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
                                             DeployWizard.deploy(function () {
                                                 rl.close();
                                                 cb();
