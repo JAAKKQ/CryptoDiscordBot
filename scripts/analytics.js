@@ -1,7 +1,7 @@
 const { Client, Collection, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const { dirname } = require('path');
-const RootFolder = dirname(require.main.filename);
+var path = require('path');
+var RootFolder = path.resolve("./");
 const { token } = require(RootFolder + '/config.json');
 var NumMembers;
 
