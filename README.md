@@ -48,10 +48,9 @@ To answer the given question just define the `[answer]` value
 6.  The setup wizard will then ask: "Config file not found. Would you like to setup a new config or recover old data? s/r" 
 7.  Type `s` and hit <kbd>enter</kbd>
 8.  Paste your token and hit <kbd>enter</kbd>
-9.  Then paste your bot's id and hit <kbd>enter</kbd>
+9.  Then paste your bot's id and hit <kbd>enter<kbd>
 10.  The bot should start if there were no errors
 
-```diff
-- You should never write your bot's token or id directly to the config.json file, always use the wizard to change them!
-```
+#### You should never write your bot's token or id directly to the `config.json` file, always use the wizard to change them!
+
 To start the token wizard just run `node index.js` and when asks "Set new token?" type `y` and hit <kbd>enter</kbd>.
