@@ -48,9 +48,10 @@ To answer the given question just define the `[answer]` value
 6.  The setup wizard will then ask: "Config file not found. Would you like to setup a new config or recover old data? s/r" 
 7.  Type `s` and hit <kbd>enter</kbd>
 8.  Paste your token and hit <kbd>enter</kbd>
-9.  Then paste your bot's id and hit <kbd>enter<kbd>
-10.  The bot should start if there were no errors
+9.  Then paste your bot's id and hit <kbd>enter</kbd>
+10. Then the wizard will ask if you want to give a price chart when users ask for the price of a coin: "Insert chart API token from chart-img.com (optional)" this is optional. You can get the API key from [chart-img.com/account/api](https://chart-img.com/account/api)
+11.  The bot should start if there were no errors
 
-#### You should never write your bot's token or id directly to the `config.json` file, always use the wizard to change them!
+#### You should never write your bot's token, chart-img API key or client ID directly to the `config.json` file, always use the wizard to change them!
 
-To start the token wizard just run `node index.js` and when asks "Set new token?" type `y` and hit <kbd>enter</kbd>.
+To start the wizard just run `node index.js` and when asks "Set new token?" type `y` and hit <kbd>enter</kbd>.
