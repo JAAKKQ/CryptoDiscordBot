@@ -1,6 +1,10 @@
 const Discord = require('discord.js')
 const fetch = require('node-fetch')
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
+const fs = require('fs');
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
+var alert = require('data-storage-system')('./data/alerts');
 
 var BTCprice = "null";
 var ETHprice = "null";
@@ -27,34 +31,59 @@ async function Prices() {
 	XLMprice = await getJson("https://api.coingecko.com/api/v3/simple/price?ids=stellar&vs_currencies=usd", "stellar")
 }
 
+async function GetAlertPrice(coin, cb){
+	const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`);
+	const data = await response.json();
+	cb(data.market_data.current_price.usd);
+}
+
 //Handle alerts set buy users.
-function HandleAlerts() {
-	fs.readdir(RootFolder + '/data/member/', function (err, files) {
-		if (err) {
-			console.log("Could not list the directory.", err);
-		}
-		if (files.length) {
-			files.forEach(function (file, index) {
-				fs.readFile(RootFolder + `/data/member/${file}`, 'utf8', function (err, code) {
-					if (err) return cb("error loading file" + err);
-					try {
-						//Code for each user
-					}
-					catch (e) {
-						console.log("Error parsing " + f + ": " + e);
-					}
+function CheckAlerts() {
+	if (fs.existsSync(RootFolder + '/data/alerts/')) {
+		fs.readdir(RootFolder + '/data/alerts/', function (err, files) {
+			if (err) {
+				console.log("Could not list the directory.", err);
+			}
+			if (files.length) {
+				files.forEach(function (file, index) {
+					fs.readFile(RootFolder + `/data/alerts/${file}`, 'utf8', function (err, code) {
+						if (err) return cb("error loading file" + err);
+						try {
+							code = JSON.parse(code);
+							const first = Object.keys(code)[1];
+							GetAlertPrice(first.toLowerCase(), function (CurrentPrice) {
+								const Coin = first
+								const CoinPriceAlert = code[first]
+								if(CurrentPrice >= CoinPriceAlert){
+									console.log(CoinPriceAlert);
+								}else{
+									console.log('' + CoinPriceAlert);
+								}
+								console.log(CoinPriceAlert); //Sinä jäit tähän!
+							})
+						}
+						catch (e) {
+							console.log("Error parsing " + f + ": " + e);
+						}
+					});
 				});
-			});
-		} else {
-			console.log('Data directory is empty!');
-		}
-	});
+			} else {
+				console.log('No alerts to check!');
+			}
+		});
+	} else {
+		//Create path
+		console.log('Creating alerts data directory...')
+		fs.mkdirSync(RootFolder + '/data/alerts/', { recursive: true });
+		CheckAlerts();
+	}
 }
 
 module.exports = {
 	name: 'ready',
 	once: true,
 	execute(client) {
+		console.log('');
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 		Prices();
 		client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
