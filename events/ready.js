@@ -5,7 +5,7 @@ const fs = require('fs');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 const { MessageEmbed } = require('discord.js')
-var alert = require('data-storage-system')('./data/alerts');
+var alert = require('data-storage-system')(RootFolder + '/data/alerts');
 
 var BTCprice = "null";
 var ETHprice = "null";
