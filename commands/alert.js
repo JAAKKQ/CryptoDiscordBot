@@ -1,7 +1,9 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
-var alert = require('data-storage-system')('./data/alerts');
+const { dirname } = require('path');
+const RootFolder = dirname(require.main.filename);
+var alert = require('data-storage-system')(RootFolder + '/data/alerts');
 const fetch = require('node-fetch');
 
 function InvalidCoin(interaction, coin){
