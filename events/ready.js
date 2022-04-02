@@ -54,7 +54,7 @@ module.exports = {
 		}, 60000);
 		setInterval(() => {
 			CheckAlerts(client);
-		}, 10000)
+		}, 1200000)
 		setInterval(() => {
 			setTimeout(function () {
 				client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
@@ -72,7 +72,7 @@ module.exports = {
 	},
 };
 
-//Handle alerts set buy users.
+//Check every users alerts and if the coin value is more than user defined price send a direct message.
 function CheckAlerts(client) {
 	if (fs.existsSync(RootFolder + '/data/alerts/')) {
 		async function SendPriceAlert(UserID, Coin, Price, AlertCurrentPrice) {
@@ -98,26 +98,26 @@ function CheckAlerts(client) {
 							code = JSON.parse(code);
 							const UserAlerts = Object.keys(code);
 							UserAlerts.forEach(function (UserAlert) {
-								if(!UserAlert.includes('id')){
-									if(!UserAlert.includes('-state')){
+								if (!UserAlert.includes('id')) {
+									if (!UserAlert.includes('-state')) {
 										GetAlertPrice(UserAlert.toLowerCase(), function (CurrentPrice) {
 											const CoinPriceAlert = code[UserAlert]
 											if (CurrentPrice > CoinPriceAlert) {
 												alert.load(`${code.id}`, UserAlert + '-state', function (err, object) {
-													if(err) throw err;
+													if (err) throw err;
 													if (object === '1') {
-														//Alert already sent!
+														//Alert already sent! So let's not send the alert again.
 													} else {
-														//Alert has not been sent
+														//Alert has not been sent. So send it then.
 														alert.add(`${code.id}`, UserAlert + '-state', 1, function (err) {
-															if(err) throw err;
+															if (err) throw err;
 															SendPriceAlert(code.id, UserAlert, CoinPriceAlert, CurrentPrice);
 														});
 													}
 												});
 											} else {
 												alert.add(`${code.id}`, UserAlert + '-state', 0, function (err) {
-													if(err) throw err;
+													if (err) throw err;
 												});
 											}
 										})
