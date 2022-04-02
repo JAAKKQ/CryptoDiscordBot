@@ -6,11 +6,11 @@ const RootFolder = dirname(require.main.filename);
 var alert = require('data-storage-system')(RootFolder + '/data/alerts');
 const fetch = require('node-fetch');
 
-function InvalidCoin(interaction, coin){
-	const exampleEmbed = new MessageEmbed()
-		.setColor('#E74C3C')
-		.setTitle(`${coin} is not valid!`);
-	interaction.editReply({ embeds: [exampleEmbed] });
+function InvalidCoin(interaction, coin) {
+    const exampleEmbed = new MessageEmbed()
+        .setColor('#E74C3C')
+        .setTitle(`${coin} is not valid!`);
+    interaction.editReply({ embeds: [exampleEmbed] });
 }
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
         const AlertPrice = interaction.options.getNumber('price');
         const target = interaction.options.getUser('user') ?? interaction.user;
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${AlertCoin.toLowerCase()}`);
-		const data = await response.json();
+        const data = await response.json();
         if (isEmptyObject(data)) {
             InvalidCoin(interaction, AlertCoin);
         }
@@ -52,7 +52,7 @@ module.exports = {
                     interaction.editReply({ embeds: [exampleEmbed] });
                 });
             });
-        }else{
+        } else {
             InvalidCoin(interaction, AlertCoin);
         }
     },
