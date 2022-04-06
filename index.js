@@ -6,6 +6,7 @@ var TokenWizard = require(RootFolder + '/scripts/NewToken.js')('.');
 var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
 var CommandWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
+var UpdateWizard = require(RootFolder + '/scripts/updater.js')('.');
 const fs = require('fs');
 var index = 10;
 
@@ -15,6 +16,9 @@ const rl = readline.createInterface({
 });
 
 function Updater() {
+	UpdateWizard.auto(function () {
+		console.log('Hello')
+	});
 }
 
 function InitWizards() {

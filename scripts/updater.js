@@ -55,6 +55,7 @@ module.exports = function (dir) {
             });
             autoupdater.on('end', function () {
                 console.log("The app is ready to function");
+                cb();
             });
             autoupdater.on('error', function (name, e) {
                 console.error(name, e);
