@@ -3,24 +3,16 @@ const RootFolder = dirname(require.main.filename);
 var shell = require('shelljs');
 const fs = require('fs');
 const fse = require('fs-extra');
+const gitPullOrClone = require('git-pull-or-clone');
 
 function install() {
-    const installDir = RootFolder + '/update-cache/';
-    shell.cd(RootFolder);
-    shell.exec(`git clone -b devlopment https://github.com/JAAKKQ/CryptoDiscordBot ${installDir}`);
-    console.log('Ready!');
     if (fs.existsSync(RootFolder + '/.git/')) {
         console.log('Auto updater disabled.');
     } else {
-        if (fs.existsSync(RootFolder + '/update-cache/')) {
-            fse.copySync(RootFolder + '/update-cache/', { overwrite: true }, RootFolder, function (err) {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log("success!");
-                }
-            });
-        }
+        gitPullOrClone('git@github.com:JAAKKQ/CryptoDiscordBot.git', '.', (err) => {
+            if (err) throw err
+            console.log('SUCCESS!')
+          })
     }
 }
 
