@@ -59,6 +59,7 @@ function InitWizards() {
 }
 
 Updater();
+//InitWizards();
 
 
 //Token timeout function
