@@ -18,6 +18,7 @@
     "discord.js": "^13.6.0",
     "discord.js-snowflake": "^1.0.0-dev",
     "fs-extra": "^10.0.1",
+    "git-clone": "^0.2.0",
     "graceful-fs": "^4.1.2",
     "math-question-creator": "github:JAAKKQ/math-question-creator-js",
     "mkdirp": "^0.5.1",

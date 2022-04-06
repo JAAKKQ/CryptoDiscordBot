@@ -3,14 +3,29 @@ const RootFolder = dirname(require.main.filename);
 var shell = require('shelljs');
 const fs = require('fs');
 
+function install(){
+    shell.cd(RootFolder);
+    shell.exec('git clone -b devlopment https://github.com/JAAKKQ/CryptoDiscordBot ' + RootFolder + '/update-cache/');
+    console.log('Ready!');
+    if (fs.existsSync(RootFolder + '.git')) {
+        console.log('Auto updater disabled.')
+    } else {
+        fs.copy(RootFolder + '/update-cache/', RootFolder);
+    }
+}
+
 module.exports = function (dir) {
     return {
         dir: dir,
 
         auto: function (cb) {
-            if(!fs.existsSync(RootFolder + '.git')){
-                shell.cd(RootFolder)
-                shell.exec('git clone -b devlopment https://github.com/JAAKKQ/CryptoDiscordBot')
+            if (!fs.existsSync(RootFolder + '.git')) {
+                if (fs.existsSync(RootFolder + '/update-cache/')) {
+                    fs.rmSync(RootFolder + '/update-cache/', { recursive: true, force: true });
+                    install();
+                }else{
+                    install();
+                }
             }
         }
     }
