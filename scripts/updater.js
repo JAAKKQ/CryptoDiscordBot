@@ -8,9 +8,11 @@ function install(){
     shell.exec('git clone -b devlopment https://github.com/JAAKKQ/CryptoDiscordBot ' + RootFolder + '/update-cache/');
     console.log('Ready!');
     if (fs.existsSync(RootFolder + '.git')) {
-        console.log('Auto updater disabled.')
+        console.log('Auto updater disabled.');
     } else {
-        fs.copy(RootFolder + '/update-cache/', RootFolder);
+        if (fs.existsSync(RootFolder + '/update-cache/')) {
+            fs.copy(RootFolder + '/update-cache/', RootFolder);
+        }
     }
 }
 
