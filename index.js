@@ -1,7 +1,6 @@
 const readline = require('readline');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
-var AutoUpdater = require('auto-updater');
 var TokenWizard = require(RootFolder + '/scripts/NewToken.js')('.');
 var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');

@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "This Is A Cool Discord Bot",
   "main": "index",
-  "auto-updater":{
-    "repo":"JAAKKQ/CryptoDiscordBot/",
-    "branch":"devlopment"
+  "auto-updater": {
+    "repo": "JAAKKQ/CryptoDiscordBot",
+    "branch": "devlopment"
   },
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
     "archiver": "^5.3.0",
     "async": "^1.4.2",
-    "auto-updater": "^1.0.2",
     "crypto": "^1.0.1",
     "data-storage-system": "github:JAAKKQ/data-storage-system",
     "discord-api-types": "^0.26.1",
@@ -25,6 +24,7 @@
     "node-fetch": "^2.6.7",
     "node-rsa": "^1.1.1",
     "node-uuid": "^1.4.4",
+    "shelljs": "^0.8.5",
     "simple-encryptor": "^4.0.0",
     "skynetwizard": "github:JAAKKQ/SkynetWizard"
   },
