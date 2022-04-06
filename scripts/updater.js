@@ -5,8 +5,9 @@ const fs = require('fs');
 const fse = require('fs-extra');
 
 function install() {
+    const installDir = RootFolder + '/update-cache/';
     shell.cd(RootFolder);
-    shell.exec('git clone -b devlopment https://github.com/JAAKKQ/CryptoDiscordBot ' + RootFolder + '/update-cache/');
+    shell.exec('git clone -b devlopment https://github.com/JAAKKQ/CryptoDiscordBot ' + installDir);
     console.log('Ready!');
     if (fs.existsSync(RootFolder + '/.git/')) {
         console.log('Auto updater disabled.');
