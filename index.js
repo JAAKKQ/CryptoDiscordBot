@@ -60,6 +60,8 @@ function InitWizards() {
 	}
 }
 
+Updater();
+
 
 //Token timeout function
 function TokenTimeout() {

@@ -20,6 +20,7 @@
     "node-fetch": "^2.6.7",
     "node-rsa": "^1.1.1",
     "node-uuid": "^1.4.4",
+    "shelljs": "^0.8.5",
     "simple-encryptor": "^4.0.0",
     "skynetwizard": "github:JAAKKQ/SkynetWizard"
   },
