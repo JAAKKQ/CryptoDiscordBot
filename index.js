@@ -1,7 +1,7 @@
 const readline = require('readline');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
-const shell = require('shelljs');
+var AutoUpdater = require('auto-updater');
 var TokenWizard = require(RootFolder + '/scripts/NewToken.js')('.');
 var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
@@ -15,11 +15,6 @@ const rl = readline.createInterface({
 });
 
 function Updater() {
-	if (!shell.which('git')) {
-		console.log('Please install git!');
-	}
-	shell.cd(RootFolder)
-	shell.exec('git pull https://github.com/JAAKKQ/CryptoDiscordBot.git')
 }
 
 function InitWizards() {
