@@ -6,6 +6,7 @@ const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 const { MessageEmbed } = require('discord.js')
 var alert = require('data-storage-system')(RootFolder + '/data/alerts');
+var AlertInterval = 2000; //Interval between user alert checks so that the API is not rate limiting us.
 
 var BTCprice = "null";
 var ETHprice = "null";
@@ -97,30 +98,33 @@ function CheckAlerts(client) {
 						try {
 							code = JSON.parse(code);
 							const UserAlerts = Object.keys(code);
-							UserAlerts.forEach(function (UserAlert) {
+							UserAlerts.forEach(function (UserAlert, index) {
 								if (!UserAlert.includes('id')) {
 									if (!UserAlert.includes('-state')) {
-										GetAlertPrice(UserAlert.toLowerCase(), function (CurrentPrice) {
-											const CoinPriceAlert = code[UserAlert]
-											if (CurrentPrice > CoinPriceAlert) {
-												alert.load(`${code.id}`, UserAlert + '-state', function (err, object) {
-													if (err) throw err;
-													if (object === '1') {
-														//Alert already sent! So let's not send the alert again.
-													} else {
-														//Alert has not been sent. So send it then.
-														alert.add(`${code.id}`, UserAlert + '-state', 1, function (err) {
-															if (err) throw err;
-															SendPriceAlert(code.id, UserAlert, CoinPriceAlert, CurrentPrice);
-														});
-													}
-												});
-											} else {
-												alert.add(`${code.id}`, UserAlert + '-state', 0, function (err) {
-													if (err) throw err;
-												});
-											}
-										})
+										setTimeout(function () {
+											GetAlertPrice(UserAlert.toLowerCase(), function (CurrentPrice) {
+												console.log('Checking alert ' + index)
+												const CoinPriceAlert = code[UserAlert]
+												if (CurrentPrice > CoinPriceAlert) {
+													alert.load(`${code.id}`, UserAlert + '-state', function (err, object) {
+														if (err) throw err;
+														if (object === '1') {
+															//Alert already sent! So let's not send the alert again.
+														} else {
+															//Alert has not been sent. So send it then.
+															alert.add(`${code.id}`, UserAlert + '-state', 1, function (err) {
+																if (err) throw err;
+																SendPriceAlert(code.id, UserAlert, CoinPriceAlert, CurrentPrice);
+															});
+														}
+													});
+												} else {
+													alert.add(`${code.id}`, UserAlert + '-state', 0, function (err) {
+														if (err) throw err;
+													});
+												}
+											})
+										}, index * AlertInterval);
 									}
 								}
 							});
