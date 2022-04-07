@@ -6,3 +6,4 @@ build
 *.zip
 version.json
 *.zip
+update-cache

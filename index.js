@@ -13,42 +13,45 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-if (fs.existsSync(RootFolder + '/config.json')) {
-	//Create a timeout for the set new token question.
-	TokenTimeout();
-	console.log('Skipping token wizard in ' + [index] + ' seconds. Be FAST to win the battle against the clock!');
+function InitWizards() {
+	if (fs.existsSync(RootFolder + '/config.json')) {
+		//Create a timeout for the set new token question.
+		TokenTimeout();
+		console.log('Skipping token wizard in ' + [index] + ' seconds. Be FAST to win the battle against the clock!');
 
-	//Create set timeout question.
-	rl.question('Set new token? y/n: ', function (Result) {
-		rl.close();
-		if (Result === 'y') {
-			index = 0;
-			TokenWizard.new(function () {
+		//Create set timeout question.
+		rl.question('Set new token? y/n: ', function (Result) {
+			rl.close();
+			if (Result === 'y') {
+				index = 0;
+				TokenWizard.new(function () {
+					BotInit();
+				});
+			}
+			if (Result === 'n') {
+				index = 0;
 				BotInit();
-			});
-		}
-		if (Result === 'n') {
-			index = 0;
-			BotInit();
-		}
-	});
-} else {
-	rl.question('Config file not found. Would you like to setup a new config or recover old data? s/r: ', function (Result) {
-		rl.close();
-		if (Result === 's') {
-			SetupWizard.start(function () {
-				BotInit();
-			});
-		}
-		if (Result === 'r') {
-			console.log('You are now in the data recovery wizard.');
-			DataRecoveryWizard.start(function () {
-				BotInit();
-			});
-		}
-	});
+			}
+		});
+	} else {
+		rl.question('Config file not found. Would you like to setup a new config or recover old data? s/r: ', function (Result) {
+			rl.close();
+			if (Result === 's') {
+				SetupWizard.start(function () {
+					BotInit();
+				});
+			}
+			if (Result === 'r') {
+				console.log('You are now in the data recovery wizard.');
+				DataRecoveryWizard.start(function () {
+					BotInit();
+				});
+			}
+		});
+	}
 }
 
+InitWizards();
 
 //Token timeout function
 function TokenTimeout() {
