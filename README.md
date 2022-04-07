@@ -5,38 +5,73 @@
 Source of a cool bot that I managed to make with [discord.js](https://github.com/discordjs/discord.js). 
 This bot's status cycles trough the price of Bitcoin, Ethereum, Dogecoin and Stellar. You can buy and sell crypto!!! LESGOOO buy Bitcoin to the MOON
 
-## Commands
-This bot uses application commands!
-Users can check what is the current price of defined coin with commnad:
-```
-/price coin:
-```
-Users can check there USD balance with command:
-```
-/bal
-```
-Users can Buy and Sell over 1000 coins with commands:
-```
-/buy amount: coin:
-```
-```
-/sell amount: coin:
-```
+# FEATURES
+- Buy and sell over 1000 cryptocurrencies with USD
+- Send USD to other users
+- Get real-time price data and visual price chart
+- Price_as_bot_status(Bitcoin, Ethereum, Dogecoin, Stellar);
+- DM price alerts
 
-Users can also send USD to other users with command:
-```
-/pay amount: user:
-```
+And the best thing is that all this is FREE!
 
-Users can even "mine" USD by answering simple math questions with command:
-```
-/mine
-```
+This bot gives users the ability to check the current price of over 1000 different cryptocurrencies. The visual chart is not very consistent so the chart may not be given for every request.
 
-To answer the given question just define the `[answer]` value
+EXAMPLE:
+
+![This is an image](https://cdn.discordapp.com/attachments/856939429447860274/957998856887468073/price_command.PNG)
+
+The bot's status cycles through Bitcoin, Ethereum, Dogecoin and Stellar Lumen.
+
+EXAMPLE: 
+
+![This is gif](https://cdn.discordapp.com/attachments/856939429447860274/957998739711213588/price_as_status.gif)
+
+Users can also buy and sell crypto coins with USD.
+
+EXAMPLE:
+
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/957998856610652190/buy_command.PNG)
+
+### COMMAND LIST:
+This bot uses only application commands!
 ```
-/mine answer:
+/price [coin]             //Get current price
+
+/bal                      //Get your USD balance
+
+/wallet [coin]            //Get cryptocurrency wallet balance
+
+/buy [amount] [coin]      //Buy coins
+
+/sell [amount] [coin]     //Sell coins
+
+/pay [amount] [@user]     //Send USD to @user
+
+/mine [answer]            //Answer simple math question and receive USD.
+
+/alert [coin] [price]     //DMs if coin value is more than price
+
+/alerts                   //Gives a list of every alert you have set
 ```
+### Mine command explained:
+To get a new math question only type ```/mine``` without the [answer] argument it will then give you a simple math question. To answer that question type ```/mine [answer]``` and define the [answer]. If the answer was right you will receive USD reward.
+
+Request for question:
+
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/958005926483361872/math_noAns.PNG)
+
+If answer is right it will return this:
+
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/958005926181339198/math_withAns.PNG)
+
+### Price Alerts
+You can create price alerts with command `/alert [coin] [price]`
+
+![This an image](https://cdn.discordapp.com/attachments/856853778610913283/959904215453556736/Capture.PNG)
+
+The bot sends you a private message when the coin's value is more than the price you defined.
+
+![This an image](https://cdn.discordapp.com/attachments/856853778610913283/959903943171928085/Capture.PNG)
 
 ## Installation
 
