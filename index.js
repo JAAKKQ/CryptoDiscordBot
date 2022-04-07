@@ -5,7 +5,6 @@ var TokenWizard = require(RootFolder + '/scripts/NewToken.js')('.');
 var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
 var CommandWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
-var UpdateWizard = require(RootFolder + '/scripts/updater.js')('.');
 const fs = require('fs');
 var index = 10;
 
@@ -13,12 +12,6 @@ const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout
 });
-
-function Updater() {
-	UpdateWizard.auto(function () {
-		console.log('Hello')
-	});
-}
 
 function InitWizards() {
 	if (fs.existsSync(RootFolder + '/config.json')) {
@@ -58,9 +51,7 @@ function InitWizards() {
 	}
 }
 
-//Updater();
 InitWizards();
-
 
 //Token timeout function
 function TokenTimeout() {
