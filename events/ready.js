@@ -4,7 +4,8 @@ const isEmptyObject = (obj) => Object.keys(obj).length === 0;
 const fs = require('fs');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
+var CronJob = require('cron').CronJob;
 var alert = require('data-storage-system')(RootFolder + '/data/alerts');
 var AlertInterval = 2000; //Interval between user alert checks so that the API is not rate limiting us.
 
@@ -48,14 +49,14 @@ module.exports = {
 		console.log('');
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 		Prices();
-		CheckAlerts(client);
+		var job = new CronJob('*/10 * * * *', function () {
+			CheckAlerts(client);
+		}, null, true, 'Europe/Helsinki');
+		job.start();
 		client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
 		setInterval(() => {
 			Prices();
 		}, 60000);
-		setInterval(() => {
-			CheckAlerts(client);
-		}, 120000)
 		setInterval(() => {
 			setTimeout(function () {
 				client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
