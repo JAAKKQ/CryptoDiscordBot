@@ -55,7 +55,7 @@ module.exports = {
 		}, 60000);
 		setInterval(() => {
 			CheckAlerts(client);
-		}, 1200000)
+		}, 120000)
 		setInterval(() => {
 			setTimeout(function () {
 				client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
