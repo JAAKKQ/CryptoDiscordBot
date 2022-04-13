@@ -18,19 +18,19 @@ This bot gives users the ability to check the current price of over 1000 differe
 
 EXAMPLE:
 
-![This is an image](https://cdn.discordapp.com/attachments/856939429447860274/957998856887468073/price_command.PNG)
+![This is an image](https://cdn.discordapp.com/attachments/856939429447860274/962747496919085066/price.PNG)
 
 The bot's status cycles through Bitcoin, Ethereum, Dogecoin and Stellar Lumen.
 
 EXAMPLE: 
 
-![This is gif](https://cdn.discordapp.com/attachments/856939429447860274/957998739711213588/price_as_status.gif)
+![This is gif](https://cdn.discordapp.com/attachments/856939429447860274/962754603168968734/ezgif-1-f2c582f819.gif)
 
 Users can also buy and sell crypto coins with USD.
 
 EXAMPLE:
 
-![This an image](https://cdn.discordapp.com/attachments/856939429447860274/957998856610652190/buy_command.PNG)
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/962747804726489178/buy.PNG)
 
 ### COMMAND LIST:
 This bot uses only application commands!
@@ -56,23 +56,23 @@ This bot uses only application commands!
 ### Mine command explained:
 To get a new math question only type ```/mine``` without the [answer] argument it will then give you a simple math question. To answer that question type ```/mine [answer]``` and define the [answer]. If the answer was right you will receive USD reward.
 
-Request for question:
+Miner:
 
-![This an image](https://cdn.discordapp.com/attachments/856939429447860274/958005926483361872/math_noAns.PNG)
-
-If answer is right it will return this:
-
-![This an image](https://cdn.discordapp.com/attachments/856939429447860274/958005926181339198/math_withAns.PNG)
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/962747494469603348/miner.PNG)
 
 ### Price Alerts
 You can create price alerts with command `/alert [coin] [price]`
 
-![This an image](https://cdn.discordapp.com/attachments/856853778610913283/959904215453556736/Capture.PNG)
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/962747494285066331/alert.PNG)
 
 The bot sends you a private message when the coin's value is more than the price you defined.
 
-![This an image](https://cdn.discordapp.com/attachments/856853778610913283/959903943171928085/Capture.PNG)
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/962750015292473384/alert-r.PNG)
 
+### Bot down?
+Check the bot's ABOUT ME section. There might be some reason for it.
+
+![This an image](https://cdn.discordapp.com/attachments/856939429447860274/962747494083723284/Stattus.PNG)
 ## Installation
 
 1.  Download the latest [version](https://github.com/JAAKKQ/CryptoDiscordBot/archive/refs/heads/main.zip)
