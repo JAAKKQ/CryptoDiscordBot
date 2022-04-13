@@ -1,3 +1,4 @@
+//107 s. 12 r.
 const readline = require('readline');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
@@ -7,6 +8,7 @@ var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
 var CommandWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
 const fs = require('fs');
 var index = 10;
+var WebsiteDir;
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -115,6 +117,44 @@ function BotInit() {
 				await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 			}
 		});
+
+		client.on("guildCreate", guild => {
+			console.log("Joined a new guild: " + guild.name);
+
+			fs.readFile(RootFolder + '/config.json', 'utf-8', (err, data) => {
+				if (err) {
+					throw err;
+				}
+
+				// parse JSON object
+				JSONconf = JSON.parse(data);
+				WebsiteDir = JSONconf.WebsiteDir;
+
+				if(WebsiteDir === undefined){
+					console.log('Website directory not defined.' + WebsiteDir);
+				} else {
+					if (fs.existsSync(WebsiteDir + '/stats.json')) {
+						const rawData = {
+							"serverCount": client.guilds.cache.size,
+							"memberCount": "a lot of"
+						};
+			
+						const data = JSON.stringify(rawData);
+						fs.writeFile(WebsiteDir + '/stats.json', data, (err) => {
+							if (err) {
+								throw err;
+							}
+							console.log("Updated website member count.");
+						});
+					} else {
+						console.log("Website directory does not exist.");
+					}
+				}
+			
+				// print JSON object
+				console.log('Website dir:' + WebsiteDir);
+			});
+		})
 
 		client.login(token);
 	});
