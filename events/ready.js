@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const fetch = require('node-fetch')
 const isEmptyObject = (obj) => Object.keys(obj).length === 0;
 const fs = require('fs');
