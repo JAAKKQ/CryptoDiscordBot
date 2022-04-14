@@ -88,20 +88,6 @@ function BotInit() {
             intents: [Intents.FLAGS.GUILDS]
         });
 
-        function GetTotalMembers(cb) {
-            var TotalMembers;
-            client.guilds.cache.forEach(guild, index => {
-                if (!client.guilds.cache.size === index) {
-                    TotalMembers = +[TotalMembers] + +[guild.memberCount];
-                } else {
-                    cd(TotalMembers);
-                }
-            })
-        }
-        GetTotalMembers(function(total) {
-            console.log(total);
-        });
-
         const eventFiles = fs.readdirSync(RootFolder + '/events').filter(file => file.endsWith('.js'));
 
         for (const file of eventFiles) {
@@ -150,39 +136,55 @@ function BotInit() {
             guild => {
                 console.log("Joined a new guild: " + guild.name);
 
-                fs.readFile(RootFolder + '/config.json', 'utf-8', (err, data) => {
-                    if (err) {
-                        throw err;
-                    }
-
-                    // parse JSON object
-                    JSONconf = JSON.parse(data);
-                    WebsiteDir = JSONconf.WebsiteDir;
-
-                    if (WebsiteDir === undefined) {
-                        console.log('Website directory not defined.' + WebsiteDir);
-                    } else {
-                        if (fs.existsSync(WebsiteDir + '/stats.json')) {
-                            const rawData = {
-                                "serverCount": client.guilds.cache.size,
-                                "memberCount": "a lot of"
-                            };
-
-                            const data = JSON.stringify(rawData);
-                            fs.writeFile(WebsiteDir + '/stats.json', data, (err) => {
-                                if (err) {
-                                    throw err;
-                                }
-                                console.log("Updated website member count.");
-                            });
+                function GetTotalMembers(cb) {
+                    var TotalMembers;
+                    client.guilds.cache.forEach(guild, index => {
+                        if (!client.guilds.cache.size === index) {
+                            TotalMembers = +[TotalMembers] + +[guild.memberCount];
                         } else {
-                            console.log("Website directory does not exist.");
+                            cd(TotalMembers);
                         }
-                    }
-
-                    // print JSON object
-                    console.log('Website dir:' + WebsiteDir);
+                    })
+                }
+                GetTotalMembers(function(total) {
+                    console.log(total);
                 });
+
+                fs.readFile(RootFolder + '/config.json',
+                    'utf-8',
+                    (err, data) => {
+                        if (err) {
+                            throw err;
+                        }
+
+                        // parse JSON object
+                        JSONconf = JSON.parse(data);
+                        WebsiteDir = JSONconf.WebsiteDir;
+
+                        if (WebsiteDir === undefined) {
+                            console.log('Website directory not defined.' + WebsiteDir);
+                        } else {
+                            if (fs.existsSync(WebsiteDir + '/stats.json')) {
+                                const rawData = {
+                                    "serverCount": client.guilds.cache.size,
+                                    "memberCount": "a lot of"
+                                };
+
+                                const data = JSON.stringify(rawData);
+                                fs.writeFile(WebsiteDir + '/stats.json', data, (err) => {
+                                    if (err) {
+                                        throw err;
+                                    }
+                                    console.log("Updated website member count.");
+                                });
+                            } else {
+                                console.log("Website directory does not exist.");
+                            }
+                        }
+
+                        // print JSON object
+                        console.log('Website dir:' + WebsiteDir);
+                    });
             })
 
         client.login(token);
