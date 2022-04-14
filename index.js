@@ -136,20 +136,6 @@ function BotInit() {
             guild => {
                 console.log("Joined a new guild: " + guild.name);
 
-                function GetTotalMembers(cb) {
-                    var TotalMembers;
-                    client.guilds.cache.forEach(guild, index => {
-                        if (!client.guilds.cache.size === index) {
-                            TotalMembers = +[TotalMembers] + +[guild.memberCount];
-                        } else {
-                            cd(TotalMembers);
-                        }
-                    })
-                }
-                GetTotalMembers(function(total) {
-                    console.log(total);
-                });
-
                 fs.readFile(RootFolder + '/config.json',
                     'utf-8',
                     (err, data) => {
