@@ -71,7 +71,6 @@ function TokenTimeout() {
     }
 }
 
-//Get total members
 function GetTotalMembers(cb) {
     var TotalMembers;
     client.guilds.cache.forEach(guild, index => {
@@ -82,6 +81,9 @@ function GetTotalMembers(cb) {
         }
     })
 }
+GetTotalMembers(function(total) {
+    console.log(total);
+});
 
 //Base bot functionality
 function BotInit() {
@@ -161,20 +163,18 @@ function BotInit() {
                         console.log('Website directory not defined.' + WebsiteDir);
                     } else {
                         if (fs.existsSync(WebsiteDir + '/stats.json')) {
-                            GetTotalMembers(function(total) {
-                                const rawData = {
-                                    "serverCount": client.guilds.cache.size,
-                                    "memberCount": total
-                                };
+                            const rawData = {
+                                "serverCount": client.guilds.cache.size,
+                                "memberCount": "a lot of"
+                            };
 
-                                const data = JSON.stringify(rawData);
-                                fs.writeFile(WebsiteDir + '/stats.json', data, (err) => {
-                                    if (err) {
-                                        throw err;
-                                    }
-                                    console.log("Updated website member count.");
-                                });
-                            })
+                            const data = JSON.stringify(rawData);
+                            fs.writeFile(WebsiteDir + '/stats.json', data, (err) => {
+                                if (err) {
+                                    throw err;
+                                }
+                                console.log("Updated website member count.");
+                            });
                         } else {
                             console.log("Website directory does not exist.");
                         }
