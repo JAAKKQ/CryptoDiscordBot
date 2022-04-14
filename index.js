@@ -154,6 +154,7 @@ function BotInit() {
 								throw err;
 							}
 							console.log("Updated member and guild count to website.");
+							TotalMembers = 0;
 						});
 					} else {
 						console.log("Website directory does not exist.");
