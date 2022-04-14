@@ -1,6 +1,7 @@
 ## Wut is this?
 [Invite Link](https://discord.com/api/oauth2/authorize?client_id=940968101627969598&permissions=277025410048&scope=bot%20applications.commands) <br>
-[Top.gg](https://top.gg/bot/940968101627969598)
+[Top.gg](https://top.gg/bot/940968101627969598)<br>
+[R3ne.net](https://r3ne.net/#DiscordBot)
 
 Source of a cool bot that I managed to make with [discord.js](https://github.com/discordjs/discord.js). 
 This bot's status cycles trough the price of Bitcoin, Ethereum, Dogecoin and Stellar. You can buy and sell crypto!!! LESGOOO buy Bitcoin to the MOON
