@@ -71,20 +71,6 @@ function TokenTimeout() {
     }
 }
 
-function GetTotalMembers(cb) {
-    var TotalMembers;
-    client.guilds.cache.forEach(guild, index => {
-        if (!client.guilds.cache.size === index) {
-            TotalMembers = +[TotalMembers] + +[guild.memberCount];
-        } else {
-            cd(TotalMembers);
-        }
-    })
-}
-GetTotalMembers(function(total) {
-    console.log(total);
-});
-
 //Base bot functionality
 function BotInit() {
     CommandWizard.deploy(function () {
@@ -100,6 +86,20 @@ function BotInit() {
 
         const client = new Client({
             intents: [Intents.FLAGS.GUILDS]
+        });
+
+        function GetTotalMembers(cb) {
+            var TotalMembers;
+            client.guilds.cache.forEach(guild, index => {
+                if (!client.guilds.cache.size === index) {
+                    TotalMembers = +[TotalMembers] + +[guild.memberCount];
+                } else {
+                    cd(TotalMembers);
+                }
+            })
+        }
+        GetTotalMembers(function(total) {
+            console.log(total);
         });
 
         const eventFiles = fs.readdirSync(RootFolder + '/events').filter(file => file.endsWith('.js'));
