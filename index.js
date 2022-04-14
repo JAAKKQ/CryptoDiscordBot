@@ -7,8 +7,11 @@ var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
 var CommandWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
 const fs = require('fs');
+
+//Global vars
 var index = 10;
 var WebsiteDir;
+var TotalMembers = 0;
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -130,27 +133,33 @@ function BotInit() {
 				JSONconf = JSON.parse(data);
 				WebsiteDir = JSONconf.WebsiteDir;
 
-				if(WebsiteDir === undefined){
+				if (WebsiteDir === undefined) {
 					console.log('Website directory not defined.' + WebsiteDir);
 				} else {
 					if (fs.existsSync(WebsiteDir + '/stats.json')) {
+						function GetTotalMembers() {
+							client.guilds.cache.forEach(guild => {
+								TotalMembers = +[TotalMembers] + +[guild.memberCount];
+							})
+						}
+						GetTotalMembers();
 						const rawData = {
 							"serverCount": client.guilds.cache.size,
-							"memberCount": "a lot of"
+							"memberCount": TotalMembers
 						};
-			
+
 						const data = JSON.stringify(rawData);
 						fs.writeFile(WebsiteDir + '/stats.json', data, (err) => {
 							if (err) {
 								throw err;
 							}
-							console.log("Updated website member count.");
+							console.log("Updated member and guild count to website.");
 						});
 					} else {
 						console.log("Website directory does not exist.");
 					}
 				}
-			
+
 				// print JSON object
 				console.log('Website dir:' + WebsiteDir);
 			});
