@@ -6,6 +6,7 @@ var TokenWizard = require(RootFolder + '/scripts/NewToken.js')('.');
 var DataRecoveryWizard = require(RootFolder + '/scripts/DataRecovery.js')('.');
 var SetupWizard = require(RootFolder + '/scripts/SetupWizard.js')('.');
 var CommandWizard = require(RootFolder + '/scripts/deploy-commands.js')('.');
+var TopGG = require(RootFolder + '/scripts/topgg.js')('.');
 const fs = require('fs');
 
 //Global vars
@@ -77,6 +78,7 @@ function TokenTimeout() {
 function BotInit() {
 	CommandWizard.deploy(function () {
 		console.log('Starting bot...');
+		TopGG.init();
 		const { Client, Collection, Intents } = require('discord.js');
 		const { token } = require(RootFolder + '/config.json');
 
