@@ -13,7 +13,7 @@ function InvalidCoin(interaction) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('top')
-        .setDescription('Stats about top 10 coins'),
+        .setDescription('Stats about top 5 coins'),
     async execute(interaction) {
         if (!interaction.isCommand()) return;
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false`);
@@ -28,7 +28,7 @@ module.exports = {
                 .setTitle(`TOP 5 COINS`)
                 .addFields(
                     { name: `${data[0].market_cap_rank}. ${data[0].name}`, value: `**Value:** *$${data[0].current_price}*
-                    **ATH:** *${data[0].ath}*
+                    **ATH:** *$${data[0].ath}*
                     **ATH DATE:** *${data[0].ath_date}*
                     **Market Cap:** *${data[0].market_cap}*
                     **Total Suply:** *${data[0].total_supply} ${data[0].symbol.toUpperCase()}*
