@@ -2,25 +2,31 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('help')
-		.setDescription('Returns the help menu!'),
-	async execute(interaction) {
-		if (!interaction.isCommand()) return;
+  data: new SlashCommandBuilder()
+    .setName('help')
+    .setDescription('Returns the help menu!'),
+  async execute(interaction) {
+    if (!interaction.isCommand()) return;
     await interaction.deferReply();
-        const exampleEmbed = new MessageEmbed()
-            .setColor('#E74C3C')
-            .setTitle(`Help`)
-            .addFields(
-              { name: '/Price [Coin]', value: `Returns the current price if defined coin.` },
-              { name: '/Buy [Amount] [Coin]', value: `Buy coins with USD!` },
-              { name: '/Sell [Amount] [Coin]', value: `Sell coins and receive USD!` },
-              { name: '/Pay [Amount] [User]', value: `Send USD to @user!` },
-              { name: '/Wallet [Coin]', value: `Returns the amount of specified coin!` }
-              )
-              .setTimestamp();
-              interaction.editReply({ embeds: [exampleEmbed] });
-	},
+    const exampleEmbed = new MessageEmbed()
+      .setColor('#F1C40F')
+      .setTitle(`Help`)
+      .addFields(
+        { name: '/price coin:', value: `Returns the current price if defined coin.` },
+        { name: '/buy amount: coin:', value: `Buy coins with USD!` },
+        { name: '/sell amount: coin:', value: `Sell coins and receive USD!` },
+        { name: '/pay amount: user:', value: `Send USD to user!` },
+        { name: '/wallet coin:', value: `Returns the amount of specified coin!` },
+        { name: '/mine', value: `Asnwer simple math question and receive USD` },
+        { name: '/alert coin: price:', value: `Set price alerts.` },
+        { name: '/alerts', value: `Returns all your price alerts.` },
+        { name: '/info coin:', value: `Get some advanced information about the defined coin.` },
+        { name: '/top', value: `Returns top 10 (by market cap) coins.` },
+
+      )
+      .setTimestamp();
+    interaction.editReply({ embeds: [exampleEmbed] });
+  },
 };
 //I never realized the lengths I'd have to go
 //All the darkest corners of a sense
