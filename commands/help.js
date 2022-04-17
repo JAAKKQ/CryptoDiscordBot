@@ -11,6 +11,7 @@ module.exports = {
     const exampleEmbed = new MessageEmbed()
       .setColor('#F1C40F')
       .setTitle(`Help`)
+      .setDescription('Report bugs at: [r3ne.net/bug.html](https://www.r3ne.net/bug.html)')
       .addFields(
         { name: '/price coin:', value: `Returns the current price if defined coin.` },
         { name: '/buy amount: coin:', value: `Buy coins with USD!` },
@@ -21,7 +22,7 @@ module.exports = {
         { name: '/alert coin: price:', value: `Set price alerts.` },
         { name: '/alerts', value: `Returns all your price alerts.` },
         { name: '/info coin:', value: `Get some advanced information about the defined coin.` },
-        { name: '/top', value: `Returns top 10 (by market cap) coins.` },
+        { name: '/top', value: `Returns top 5 (by market cap) coins.` },
 
       )
       .setTimestamp();
