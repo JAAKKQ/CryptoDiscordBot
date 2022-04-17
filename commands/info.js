@@ -35,8 +35,8 @@ module.exports = {
                 .setTitle(`Info About ${data.name}`)
                 .addFields(
                     { name: `${data.name}`, value: `**Value:** *$${data.market_data.current_price.usd}*
-                    **ATH: ** *${data.market_data.ath.usd}*
-                    **ATH DATE: ** *$${data.market_data.ath_date.usd}*
+                    **ATH: ** *$${data.market_data.ath.usd}*
+                    **ATH DATE: ** *${data.market_data.ath_date.usd}*
                     **Market Cap: ** *$${data.market_data.market_cap[id]}*
                     **MC Rank: ** *${data.market_data.market_cap_rank}*
                     **Total Supply: ** *${data.market_data.total_supply} ${data.symbol.toUpperCase()}*
