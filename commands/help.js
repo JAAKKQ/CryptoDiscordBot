@@ -7,7 +7,7 @@ module.exports = {
     .setDescription('Returns the help menu!'),
   async execute(interaction) {
     if (!interaction.isCommand()) return;
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: true });
     const exampleEmbed = new MessageEmbed()
       .setColor('#F1C40F')
       .setTitle(`Help`)
@@ -25,7 +25,7 @@ module.exports = {
 
       )
       .setTimestamp();
-    interaction.editReply({ embeds: [exampleEmbed] });
+    interaction.editReply({ embeds: [exampleEmbed], ephemeral: true });
   },
 };
 //I never realized the lengths I'd have to go
