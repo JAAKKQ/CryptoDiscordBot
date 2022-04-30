@@ -39,12 +39,24 @@ async function GetAlertPrice(coin, cb) {
 	const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`);
 	const data = await response.json();
 	cb(data.market_data.current_price.usd);
+} 
+
+async function IsUpdateAvailable() {
+	const response = await fetch(`https://raw.githubusercontent.com/JAAKKQ/CryptoDiscordBot/main/package.json`);
+	const GitPackage = await response.json();
+	const { version } = require(RootFolder + '/package.json');
+	if(version < GitPackage.version){
+		console.log('\x1b[31m%s\x1b[0m', "New version available at https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!");
+	} else {
+		console.log("Bot Up To Date!");
+	}
 }
 
 module.exports = {
 	name: 'ready',
 	once: true,
 	execute(client) {
+		IsUpdateAvailable();
 		console.log('');
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 		Prices();
