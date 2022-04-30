@@ -7,4 +7,3 @@ build
 version.json
 *.zip
 update-cache
-package-lock.json
