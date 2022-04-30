@@ -45,8 +45,15 @@ async function IsUpdateAvailable() {
 	const response = await fetch(`https://raw.githubusercontent.com/JAAKKQ/CryptoDiscordBot/main/package.json`);
 	const GitPackage = await response.json();
 	const { version } = require(RootFolder + '/package.json');
-	if(version < GitPackage.version){
-		console.log('\x1b[31m%s\x1b[0m', "New version available at https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!");
+	if(+[GitPackage.R3version] > +[version]){
+		const VerDiff = +[GitPackage.R3version] - +[version];
+		console.log('\x1b[31m%s\x1b[0m', "------------------NEW VERSION AVAILABLE-----------------");
+		console.log('\x1b[31m%s\x1b[0m', "Update at: https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!\nVersion Diffrence: " + VerDiff);
+		console.log('\x1b[32m%s\x1b[0m', "-----------------VERSION DIFFRENCE GUIDE-----------------");
+		console.log('\x1b[32m%s\x1b[0m', "1-9 = Small Patch");
+		console.log('\x1b[32m%s\x1b[0m', "10-99 = Normal Update");
+		console.log('\x1b[32m%s\x1b[0m', "100-999 = Security Vulnerability Fix");
+		console.log('\x1b[32m%s\x1b[0m', "---------------------------------------------------------");
 	} else {
 		console.log("Bot Up To Date!");
 	}
