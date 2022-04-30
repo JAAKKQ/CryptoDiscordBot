@@ -42,11 +42,11 @@ async function GetAlertPrice(coin, cb) {
 } 
 
 async function IsUpdateAvailable() {
-	const response = await fetch(`https://raw.githubusercontent.com/JAAKKQ/CryptoDiscordBot/main/package.json`);
+	const response = await fetch(`https://raw.githubusercontent.com/JAAKKQ/CryptoDiscordBot/devlopment/package.json`);
 	const GitPackage = await response.json();
-	const { version } = require(RootFolder + '/package.json');
-	if(+[GitPackage.R3version] > +[version]){
-		const VerDiff = +[GitPackage.R3version] - +[version];
+	const { R3version } = require(RootFolder + '/package.json');
+	if(+[GitPackage.R3version] > +[R3version]){
+		const VerDiff = +[GitPackage.R3version] - +[R3version];
 		console.log('\x1b[31m%s\x1b[0m', "------------------NEW VERSION AVAILABLE-----------------");
 		console.log('\x1b[31m%s\x1b[0m', "Update at: https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!\nVersion Diffrence: " + VerDiff);
 		console.log('\x1b[32m%s\x1b[0m', "-----------------VERSION DIFFRENCE GUIDE-----------------");
