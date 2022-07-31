@@ -39,20 +39,26 @@ async function GetAlertPrice(coin, cb) {
 	const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`);
 	const data = await response.json();
 	cb(data.market_data.current_price.usd);
-} 
+}
 
 async function IsUpdateAvailable() {
-	const response = await fetch(`https://raw.githubusercontent.com/JAAKKQ/CryptoDiscordBot/devlopment/package.json`);
+	const response = await fetch(`https://raw.githubusercontent.com/JAAKKQ/CryptoDiscordBot/main/package.json`);
 	const GitPackage = await response.json();
 	const { R3version } = require(RootFolder + '/package.json');
-	if(+[GitPackage.R3version] > +[R3version]){
-		const VerDiff = +[GitPackage.R3version] - +[R3version];
+	if (+[GitPackage.R3version] > +[R3version]) {
+		var RawOldVersion = R3version.toString().split('');
+		var OldVersion = RawOldVersion.map(Number).toString().replace(",", ".").replace(",", ".").replace(",", ".");
+		var RawNewVersion = GitPackage.R3version.toString().split('');
+		var NewVersion = RawNewVersion.map(Number).toString().replace(",", ".").replace(",", ".").replace(",", ".");
+		console.log("Current version: " + NewVersion);
+		console.log("New version: " + NewVersion);
 		console.log('\x1b[31m%s\x1b[0m', "------------------NEW VERSION AVAILABLE-----------------");
-		console.log('\x1b[31m%s\x1b[0m', "Update at: https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!\nVersion Diffrence: " + VerDiff);
-		console.log('\x1b[32m%s\x1b[0m', "-----------------VERSION DIFFRENCE GUIDE-----------------");
-		console.log('\x1b[32m%s\x1b[0m', "1-9 = Small Patch");
-		console.log('\x1b[32m%s\x1b[0m', "10-99 = Normal Update");
-		console.log('\x1b[32m%s\x1b[0m', "100-999 = Security Vulnerability Fix");
+		console.log('\x1b[31m%s\x1b[0m', "Update at: https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!\nCurrent version: " + OldVersion + "\nNew version: " + NewVersion);
+		console.log('\x1b[32m%s\x1b[0m', "-----------------VERSION GUIDE-----------------");
+		console.log('\x1b[32m%s\x1b[0m', "0.0.0.1 = Small Patch");
+		console.log('\x1b[32m%s\x1b[0m', "0.0.1.0 = Medium Update");
+		console.log('\x1b[32m%s\x1b[0m', "0.1.0.0 = Security Vulnerability Fix");
+		console.log('\x1b[32m%s\x1b[0m', "1.0.0.0 = Large update");
 		console.log('\x1b[32m%s\x1b[0m', "---------------------------------------------------------");
 	} else {
 		console.log("Bot Up To Date!");
