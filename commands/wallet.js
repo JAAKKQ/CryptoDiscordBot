@@ -87,7 +87,7 @@ module.exports = {
             .setColor('#F1C40F')
             .setTitle(`Your ${ccupper} wallet`)
             .addFields(
-              { name: 'Balance', value: `${CoinBal} ${ccupper}` },
+              { name: 'Balance', value: `${CoinBal} ${ccupper} (${CoinBal * data[cc].usd} USD)` },
             )
             .setTimestamp();
           interaction.editReply({ embeds: [exampleEmbed] });
