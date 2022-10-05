@@ -50,7 +50,7 @@ async function IsUpdateAvailable() {
 		var OldVersion = RawOldVersion.map(Number).toString().replace(",", ".").replace(",", ".").replace(",", ".");
 		var RawNewVersion = GitPackage.R3version.toString().split('');
 		var NewVersion = RawNewVersion.map(Number).toString().replace(",", ".").replace(",", ".").replace(",", ".");
-		console.log("Current version: " + NewVersion);
+		console.log("Current version: " + OldVersion);
 		console.log("New version: " + NewVersion);
 		console.log('\x1b[31m%s\x1b[0m', "------------------NEW VERSION AVAILABLE-----------------");
 		console.log('\x1b[31m%s\x1b[0m', "Update at: https://github.com/JAAKKQ/CryptoDiscordBot\nPlease Update!\nCurrent version: " + OldVersion + "\nNew version: " + NewVersion);
