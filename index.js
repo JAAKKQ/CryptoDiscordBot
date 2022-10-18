@@ -86,7 +86,7 @@ function BotInit() {
 		exitOnComplete: true
 	}
 
-	const updater = new AutoGitUpdate(config);
+	const updater = new AutoGitUpdate(config).then
 
 	updater.autoUpdate();
 	CommandWizard.deploy(function () {
