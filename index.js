@@ -75,20 +75,6 @@ function TokenTimeout() {
 
 //Base bot functionality
 function BotInit() {
-	const AutoGitUpdate = require('auto-git-update');
-
-	const config = {
-		repository: 'https://github.com/JAAKKQ/CryptoDiscordBot',
-		fromReleases: true,
-		tempLocation: RootFolder + '/../tmp_dscrdBotUpdate',
-		ignoreFiles: [],
-		executeOnComplete: RootFolder + '/Start.bat',
-		exitOnComplete: true
-	}
-
-	const updater = new AutoGitUpdate(config).then
-
-	updater.autoUpdate();
 	CommandWizard.deploy(function () {
 		console.log('Starting bot...');
 		const { Client, Collection, Intents } = require('discord.js');
