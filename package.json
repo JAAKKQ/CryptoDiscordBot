@@ -13,6 +13,7 @@
     "@discordjs/rest": "^0.3.0",
     "archiver": "^5.3.0",
     "async": ">=2.6.4",
+    "auto-git-update": "^2.1.2",
     "cron": "^1.8.2",
     "data-storage-system": "github:JAAKKQ/data-storage-system",
     "discord-api-types": "^0.26.1",
