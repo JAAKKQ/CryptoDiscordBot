@@ -1,7 +1,7 @@
 {
   "name": "discordbot-2.0",
   "version": "1.0.0",
-  "R3version": "1312",
+  "R3version": "1313",
   "description": "This Is A Cool Discord Bot",
   "main": "index",
   "auto-updater": {
