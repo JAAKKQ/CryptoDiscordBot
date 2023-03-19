@@ -137,10 +137,11 @@ function BotInit() {
 					console.log('Website directory not defined.' + WebsiteDir);
 				} else {
 					if (fs.existsSync(WebsiteDir + '/stats.json')) {
+						const botCount = 0
 						const rawData = {
 							"serverCount": client.guilds.cache.size,
 							"memberCount": client.guilds.cache.reduce((total, guild) => {
-								const botCount = guild.members.cache.filter(member => member.user.bot).size;
+								botCount += guild.members.cache.filter(member => member.user.bot).size;
 								const humanCount = guild.memberCount - botCount;
 								return total + humanCount;
 							}, 0)
