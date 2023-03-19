@@ -4,6 +4,7 @@ const fs = require('fs');
 const { dirname } = require('path');
 const RootFolder = dirname(require.main.filename);
 const { MessageEmbed } = require('discord.js');
+const { cargo } = require('async');
 var CronJob = require('cron').CronJob;
 var alert = require('data-storage-system')(RootFolder + '/data/alerts');
 var AlertInterval = 20000; //Interval between user alert checks so that the API is not rate limiting us.
@@ -29,10 +30,14 @@ async function getJson(url, path) {
 }
 
 async function Prices() {
+	try {
 	BTCprice = await getJson("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd", "bitcoin")
 	ETHprice = await getJson("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd", "ethereum")
 	DOGEprice = await getJson("https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd", "dogecoin")
 	XLMprice = await getJson("https://api.coingecko.com/api/v3/simple/price?ids=stellar&vs_currencies=usd", "stellar")
+	} catch {
+		console.log("Error requesting prices for activity!")
+	}
 }
 
 async function GetAlertPrice(coin, cb) {
