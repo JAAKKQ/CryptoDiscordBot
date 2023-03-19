@@ -137,14 +137,15 @@ function BotInit() {
 					console.log('Website directory not defined.' + WebsiteDir);
 				} else {
 					if (fs.existsSync(WebsiteDir + '/stats.json')) {
-						const botCount = 0
+						let botCount = 0
+						let memberCount = client.guilds.cache.reduce((total, guild) => {
+							botCount += guild.members.cache.filter(member => member.user.bot).size;
+							const humanCount = guild.memberCount - botCount;
+							return total + humanCount;
+						}, 0)
 						const rawData = {
 							"serverCount": client.guilds.cache.size,
-							"memberCount": client.guilds.cache.reduce((total, guild) => {
-								botCount += guild.members.cache.filter(member => member.user.bot).size;
-								const humanCount = guild.memberCount - botCount;
-								return total + humanCount;
-							}, 0)
+							"memberCount": memberCount
 						};
 
 						const data = JSON.stringify(rawData);
