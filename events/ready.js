@@ -6,7 +6,7 @@ const RootFolder = dirname(require.main.filename);
 const { MessageEmbed } = require('discord.js');
 var CronJob = require('cron').CronJob;
 var alert = require('data-storage-system')(RootFolder + '/data/alerts');
-var AlertInterval = 2000; //Interval between user alert checks so that the API is not rate limiting us.
+var AlertInterval = 20000; //Interval between user alert checks so that the API is not rate limiting us.
 
 var BTCprice = "null";
 var ETHprice = "null";
@@ -21,7 +21,7 @@ async function getJson(url, path) {
 	let Price = "";
 	let Error = "Error";
 	if (!isEmptyObject(data)) {
-		Price = data[path].usd || 0 // Default to zero
+		Price = data[path].usd
 		return Price;
 	}
 	else
@@ -80,7 +80,7 @@ module.exports = {
 		client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
 		setInterval(() => {
 			Prices();
-		}, 60000);
+		}, 600000);
 		setInterval(() => {
 			setTimeout(function () {
 				client.user.setActivity(`BTC = $${BTCprice}`, { type: 'WATCHING' });
