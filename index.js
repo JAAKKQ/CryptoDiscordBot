@@ -139,8 +139,12 @@ function BotInit() {
 					if (fs.existsSync(WebsiteDir + '/stats.json')) {
 						function GetTotalMembers() {
 							client.guilds.cache.forEach(guild => {
-								TotalMembers = +[TotalMembers] + +[guild.memberCount];
-							})
+								guild.members.cache.forEach(member => {
+									if (!member.user.bot) {
+										TotalMembers++;
+									}
+								});
+							});
 						}
 						GetTotalMembers();
 						const rawData = {
